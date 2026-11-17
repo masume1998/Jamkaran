@@ -493,6 +493,66 @@
   renderColors();
   calc();
 
+  /* ---------- مشاور انتخاب شیشه (قانون‌مند، روی دستگاه؛ بدون سرور و بدون ارسال داده) ---------- */
+  function recommendAdvisor(use, size, prio) {
+    const TH = { small: 2, medium: 3, large: 4 }; /* ۶، ۸ و ۱۰ میل — ۴ میل برای ابعاد بزرگ پذیرفته نمی‌شود */
+    const th = TH[size] || 2;
+    const largeWarn = size === 'large' ? 'برای ابعاد بالای ۲ مترمربع، ضخامت ۱۰ میل پیشنهاد شد؛ شیشه ۴ میل برای این ابعاد پذیرفته نمی‌شود.' : '';
+    if (use === 'skylight') return { title: 'لمینت ۶ میل، ۲ لایه + سکوریت', reasons: ['بعد از شکست، قطعات سر جاش می‌مونه', 'برای سقف و نورگیر، ایمنی شرط اوله'], warn: 'ابعاد و بار سقف باید با کارشناس چک بشه.', apply: { ty: 0, th: 2, sv: ['لمینت', 'سکوریت'] } };
+    if (use === 'railing') return { title: 'لمینت ۶ میل، ۲ لایه + سکوریت', reasons: ['برای جان‌پناه، ایمنی بعد از شکست مهمه', 'دید باز می‌مونه و فضا بسته نمی‌شه'], warn: size === 'large' ? 'ابعاد بزرگه؛ نصب و مهار جان‌پناه باید با کارشناس چک بشه.' : '', apply: { ty: 0, th: 2, sv: ['لمینت', 'سکوریت'] } };
+    if (use === 'mirror') return { title: 'آینه ۶ میل', reasons: ['بازتاب نور و حس عمق بیشتر', 'برای دکور و دیوار دکوراتیو مناسبه'], warn: 'قیمت آینه تو تخمین قیمت نیست؛ پس از استعلام اعلام می‌شه.', apply: { ty: 2, th: 2, sv: [] } };
+    if (use === 'shower') {
+      if (prio === 'privacy') return { title: 'سکوریت سندبلاست ' + (th === 2 ? '۶' : th === 3 ? '۸' : '۱۰') + ' میل', reasons: ['نور رد می‌شه ولی دید مستقیم محدوده', 'مقاوم در برابر ضربه و تغییر دما'], warn: largeWarn, apply: { ty: 0, th: th, sv: ['سکوریت', 'سندبلاست'] } };
+      return { title: 'سکوریت شفاف ' + (th === 2 ? '۶' : th === 3 ? '۸' : '۱۰') + ' میل', reasons: ['مقاوم در برابر ضربه و تغییر دما', 'بعد از شکست به قطعات کوچک‌تر تبدیل می‌شه'], warn: largeWarn, apply: { ty: 0, th: th, sv: ['سکوریت'] } };
+    }
+    if (use === 'door') {
+      if (prio === 'privacy') return { title: 'سکوریت سندبلاست ' + (th === 2 ? '۶' : th === 3 ? '۸' : '۱۰') + ' میل', reasons: ['نور رد می‌شه، حریم خصوصی حفظ می‌شه', 'برای پارتیشن و درب داخلی مناسبه'], warn: largeWarn, apply: { ty: 0, th: th, sv: ['سکوریت', 'سندبلاست'] } };
+      return { title: 'سکوریت شفاف ' + (th === 2 ? '۶' : th === 3 ? '۸' : '۱۰') + ' میل', reasons: ['تفکیک فضا بدون حس بسته و سنگین', 'مقاوم در برابر ضربه و تغییر دما'], warn: largeWarn, apply: { ty: 0, th: th, sv: ['سکوریت'] } };
+    }
+    if (use === 'vitrine') return { title: 'سکوریت سوپرکلیر ' + (th === 2 ? '۶' : th === 3 ? '۸' : '۱۰') + ' میل', reasons: ['شفافیت بیشتر و ته‌رنگ سبز کمتر', 'رنگ کالا طبیعی‌تر دیده می‌شه'], warn: largeWarn, apply: { ty: 1, th: th, sv: ['سکوریت'] } };
+    if (use === 'table') return { title: 'سکوریت ' + (th === 2 ? '۶' : th === 3 ? '۸' : '۱۰') + ' میل + دیاموند', reasons: ['مقاوم در برابر ضربه', 'لبه پرداخت‌شده، تمیز و دقیق'], warn: largeWarn, apply: { ty: 0, th: th, sv: ['سکوریت', 'دیاموند'] } };
+    /* پنجره و نما */
+    if (prio === 'clear') return { title: 'سکوریت سوپرکلیر ' + (th === 2 ? '۶' : th === 3 ? '۸' : '۱۰') + ' میل', reasons: ['شفافیت بیشتر و ته‌رنگ سبز کمتر', 'دید بازتر و نور بیشتر'], warn: largeWarn, apply: { ty: 1, th: th, sv: ['سکوریت'] } };
+    return { title: 'سکوریت ' + (th === 2 ? '۶' : th === 3 ? '۸' : '۱۰') + ' میل', reasons: ['ترکیب زیبایی و ایمنی', prio === 'cheap' ? 'ارزان‌تر از سوپرکلیر، با همون ایمنی' : 'مقاوم در برابر ضربه و تغییر دما'], warn: largeWarn, apply: { ty: 0, th: th, sv: ['سکوریت'] } };
+  }
+  window.__jamkaranAdvisor = recommendAdvisor;
+  const adv = $('#advisor');
+  if (adv) {
+    const A = { use: null, size: null, prio: null };
+    let lastRec = null;
+    const groups = { use: $$('#advUse button', adv), size: $$('#advSize button', adv), prio: $$('#advPrio button', adv) };
+    Object.keys(groups).forEach(k => groups[k].forEach(b => b.addEventListener('click', () => {
+      A[k] = b.dataset.v;
+      groups[k].forEach(x => x.classList.toggle('on', x === b));
+      if (A.use && A.size && A.prio) {
+        lastRec = recommendAdvisor(A.use, A.size, A.prio);
+        $('#advTitle', adv).textContent = lastRec.title;
+        $('#advReasons', adv).innerHTML = lastRec.reasons.map(r => '<li>' + r + '</li>').join('');
+        const w = $('#advWarn', adv);
+        w.hidden = !lastRec.warn; w.textContent = lastRec.warn || '';
+        $('#advOut', adv).hidden = false;
+      }
+    })));
+    $('#advApply', adv).addEventListener('click', () => {
+      if (!lastRec) return;
+      typeBtns[lastRec.apply.ty].click();
+      $$('#esv input[type=checkbox]', est).forEach(c => {
+        const want = lastRec.apply.sv.includes(c.dataset.k);
+        if (c.checked !== want) { c.checked = want; c.dispatchEvent(new Event('change')); }
+      });
+      E('eth').value = lastRec.apply.th; E('eth').dispatchEvent(new Event('input'));
+      calc();
+      document.getElementById('est').scrollIntoView({ behavior: 'smooth' });
+    });
+    $('#advCopy', adv).addEventListener('click', async e => {
+      if (!lastRec) return;
+      const txt = 'مشاور جام‌کاران: ' + lastRec.title + ' — ' + lastRec.reasons.join('؛ ') + (lastRec.warn ? ' — ' + lastRec.warn : '');
+      try { await navigator.clipboard.writeText(txt); } catch (err) { /* کپی در مرورگر قدیمی */ }
+      e.target.textContent = 'کپی شد';
+      setTimeout(() => { e.target.textContent = 'کپی مشخصات'; }, 2000);
+    });
+  }
+
   /* ---------- سؤالات متداول ---------- */
   $$('#fq .acc').forEach(acc => acc.querySelector('button').addEventListener('click', () => {
     const open = !acc.classList.contains('o');

@@ -2865,7 +2865,8 @@ button,
 .advbox .seg{flex-wrap:wrap}
 .advout{margin-top:28px;background:rgba(255,255,255,.55);border-radius:24px;padding:22px 24px}
 .advk{font-size:12px;color:#4a8f7a}
-.advout h3{font-size:22px;margin:6px 0 12px}
+.advout h3{font-size:22px;margin:6px 0 4px}
+.advplain{color:#556;font-size:14px;line-height:1.9;margin:0 0 6px}
 .advout ul{padding-inline-start:20px;line-height:2.1;color:#334}
 .advwarn{margin-top:12px;background:#fff4e5;border:1px solid #f0d9b5;border-radius:14px;padding:10px 14px;line-height:1.9;font-size:14px}
 .advg{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}

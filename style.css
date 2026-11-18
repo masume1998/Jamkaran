@@ -136,7 +136,7 @@ section {
 }
 .cards {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(3,1fr);
 }
 .card {
   position: relative;
@@ -1241,7 +1241,6 @@ nav a {
   opacity: 0;
   pointer-events: none;
   transition: max-height .5s,opacity .4s,padding .4s;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, .25);
   color: var(--ink);
 }
 .inv.open {
@@ -1720,14 +1719,25 @@ nav a {
   font-size: 13px;
   margin-top: 6px;
 }
-.ticks span {
+.ticks span,
+.ticks button {
   cursor: pointer;
   color: #556;
   transition: .3s;
+  background: none;
+  border: 0;
+  font: inherit;
+  padding: 0;
 }
-.ticks span.on {
+.ticks span.on,
+.ticks button.on {
   color: #1F2C43;
   font-weight: 900;
+}
+@media (hover: hover) and (pointer: fine) {
+  .ticks button:hover {
+    color: #1F2C43;
+  }
 }
 .seg {
   display: flex;
@@ -2026,7 +2036,8 @@ nav a {
     margin-right: -122px;
   }
 }
-.ticks span.dis {
+.ticks span.dis,
+.ticks button.dis {
   opacity: .35;
 }
 .dip {
@@ -2874,3 +2885,94 @@ button,
 .advg .dt{background:none;border:1px solid #98a;border-radius:30px;padding:12px 20px;color:#556}
 .advnote{margin-top:20px;font-size:13px;color:#556;line-height:1.9}
 @media(max-width:800px){.advbox{padding:28px 20px}}
+
+/* ---------- خدمات تخصصی: از اسلایدر به گرید (۱۸ نوامبر ۲۰۲۶) ---------- */
+.svhead {
+  padding: 56px 5vw 34px;
+}
+.svhead h2 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.svhead p {
+  color: #445;
+  line-height: 1.9;
+}
+.sw {
+  display: grid !important;
+  grid-template-columns: repeat(2,1fr) !important;
+  gap: 24px !important;
+  height: auto !important;
+  overflow: visible !important;
+  scroll-snap-type: none !important;
+  cursor: default !important;
+  padding: 0 5vw 0 !important;
+}
+.sw:before,
+.sw:after {
+  display: none !important;
+}
+.sl {
+  flex: none !important;
+  height: 340px !important;
+  border-radius: 24px !important;
+  overflow: hidden;
+}
+.sl-en {
+  font-size: 12px;
+  letter-spacing: 3px;
+  opacity: .75;
+  margin-bottom: 10px;
+}
+#dots,
+.sa {
+  display: none !important;
+}
+@media(max-width:800px) {
+  .sw {
+    grid-template-columns: 1fr !important;
+  }
+  .sl {
+    height: 300px !important;
+  }
+}
+
+/* ---------- درباره ما: صنایع و زمینه‌های فعالیت ---------- */
+.about-rows {
+  margin-top: 26px;
+  display: grid;
+  gap: 14px;
+}
+.arow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+.arow b {
+  font-size: 15px;
+  flex: none;
+}
+.abox {
+  border: 1px solid #b9c2d4;
+  border-radius: 12px;
+  padding: 8px 14px;
+  font-size: 13px;
+  background: rgba(255,255,255,.65);
+  line-height: 1.6;
+}
+
+/* ---------- انیمیشن نرم قیمت در تخمین قیمت ---------- */
+@keyframes pricePop {
+  from { opacity: .35; transform: translateY(5px); }
+  to { opacity: 1; transform: none; }
+}
+.bc b.pop {
+  display: inline-block;
+  animation: pricePop .45s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bc b.pop {
+    animation: none;
+  }
+}

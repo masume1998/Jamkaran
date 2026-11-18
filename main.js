@@ -58,13 +58,6 @@
     "l2212",
     "l2213"
   ],
-  "san": [
-    "s2067",
-    "s2070",
-    "s2208",
-    "s2209",
-    "s2210"
-  ],
   "mir": [
     "m2107",
     "m2193",
@@ -87,9 +80,9 @@
     };
     img.src = src;
   }
-  $$('.card .im').forEach((e, i) => fitCard(e, IMG[['tem', 'lam', 'san', 'mir'][i]]));
+  $$('.card .im').forEach((e, i) => fitCard(e, IMG[['tem', 'lam', 'mir'][i]]));
   $$('#th > div').forEach((e, i) => setBg(e, IMG['h' + i]));
-  $$('.sl').forEach((e, i) => setBg(e, IMG['v' + i]));
+  $$('.sl').forEach((e, i) => setBg(e, IMG[['v0', 'v1', 'v2', 'san'][i]]));
   setBg($('.ph'), IMG.ab);
   setBg($('.wbg'), IMG.bg);
 
@@ -254,11 +247,6 @@
       uses: ['شیشه‌های ایمنی ساختمان', 'نورگیرها و برخی سطوح شیشه‌ای بالاسری', 'ویترین‌ها و فضاهای نیازمند نگه‌داری قطعات پس از شکست', 'برخی کاربردهای معماری و دکوراسیون']
     },
     {
-      key: 'san', title: 'سندبلانست', en: 'Sandblasted Glass',
-      desc: 'شیشه سندبلاست با ایجاد سطحی مات و نیمه‌شفاف، عبور نور را حفظ می‌کند و در عین حال دید مستقیم را محدود می‌سازد. این ویژگی آن را به گزینه‌ای کاربردی برای فضاهایی تبدیل می‌کند که به ترکیبی از نور و حریم خصوصی نیاز دارند.',
-      uses: ['پارتیشن‌های اداری', 'درب‌های داخلی', 'فضاهای مسکونی و تجاری', 'دکوراسیون داخلی', 'طرح‌های مات و تزئینی روی شیشه']
-    },
-    {
       key: 'mir', title: 'آینه', en: 'Mirror',
       desc: 'آینه با بازتاب نور و تصویر، علاوه بر کاربرد روزمره، یکی از عناصر مهم در طراحی داخلی و دکوراسیون است. استفاده از آینه می‌تواند به افزایش روشنایی بصری و ایجاد حس عمق در فضا کمک کند.',
       uses: ['دکوراسیون داخلی', 'فضاهای مسکونی', 'فروشگاه‌ها و فضاهای تجاری', 'طراحی دیوارهای دکوراتیو', 'پروژه‌های سفارشی معماری']
@@ -339,56 +327,32 @@
   specItems.forEach((s, i) => s.addEventListener('click', () => showSpec(i)));
   showSpec(0);
 
-  /* ---------- اسلایدر خدمات تخصصی ---------- */
-  const track = $('#sw');
-  const slides = $$('.sl');
-  const dots = $$('#dots b');
-  function nearestSlide() {
-    const t = track.getBoundingClientRect(), c = t.left + t.width / 2;
-    let best = 0, min = Infinity;
-    slides.forEach((s, i) => {
-      const r = s.getBoundingClientRect(), d = Math.abs(r.left + r.width / 2 - c);
-      if (d < min) { min = d; best = i; }
-    });
-    return best;
-  }
-  function goSlide(i) {
-    const a = slides[i].getBoundingClientRect(), t = track.getBoundingClientRect();
-    track.scrollBy({ left: (a.left + a.width / 2) - (t.left + t.width / 2), behavior: 'smooth' });
-  }
-  function markCurrent() {
-    const n = nearestSlide();
-    dots.forEach((d, j) => d.classList.toggle('on', j === n));
-    slides.forEach((s, j) => s.classList.toggle('cur', j === n));
-  }
-  track.addEventListener('scroll', markCurrent);
-  markCurrent();
-  dots.forEach((d, i) => d.addEventListener('click', () => goSlide(i)));
-  $('.sa.prev').addEventListener('click', () => goSlide((nearestSlide() + slides.length - 1) % slides.length));
-  $('.sa.next').addEventListener('click', () => goSlide((nearestSlide() + 1) % slides.length));
-  let dragX = null, dragStart = 0;
-  track.addEventListener('pointerdown', e => {
-    if (e.pointerType !== 'mouse') return;
-    dragX = e.clientX; dragStart = track.scrollLeft;
-    track.style.scrollSnapType = 'none'; track.style.cursor = 'grabbing';
-  });
-  addEventListener('pointermove', e => { if (dragX !== null) track.scrollLeft = dragStart - (e.clientX - dragX); });
-  addEventListener('pointerup', () => {
-    if (dragX === null) return;
-    dragX = null; track.style.scrollSnapType = ''; track.style.cursor = '';
-  });
-
   /* ---------- تخمین قیمت (قیمت‌ها از لیست قیمت مجموعه؛ میلیون ریال به ازای هر متر مربع) ---------- */
   const THICK = [4, 5, 6, 8, 10, 12];
   const NA = null;
-  const GLASS = { n: [NA, 13, 16, 20, 22], s: [NA, NA, 17, NA, 24], b: [NA, NA, 19, NA, NA], d: [NA, NA, 22, NA, 35], k: [NA, 32, 34.6, 37.5, 40.8], pw: [NA, NA, 39, NA, 45] };
+  const GLASS = { n: [13, NA, 16, 20, 22], s: [NA, NA, 17, NA, 24], b: [NA, NA, 19, NA, NA], d: [NA, NA, 22, NA, 35], k: [34, NA, 37, 39.5, 43], pw: [NA, NA, 41, NA, 47] };
   const TEMPER_PLAIN = [3.2, 3.75, 4.4, 5.6, 7.1];
-  const TEMPER_PRINT = [19, 19.5, 20, 22.5, 25];
+  const TEMPER_PRINT = [21, 21.5, 22, 24.5, 27];
   const DIAMOND = [.5, .63, .7, .88, 1];
-  const FILM = [['۰/۳۸', 20], ['۰/۵۰', 22], ['۰/۷۶', 26], ['۱/۵۲', 38]];
+  const FILM = [['۰/۳۸', 35], ['۰/۵۰', null], ['۰/۷۶', 45], ['۱/۵۲', 65]];
   const TYPES = ['معمولی', 'سوپرکلیر', 'آینه', 'لاکوبل'];
-  const TYPE_COLORS = [['سفید', 'برنز', 'دودی', 'مشکی'], ['سفید'], ['سفید', 'تینت برنز', 'تینت طلایی', 'تینت مشکی', 'تینت رز گلد'], ['مشکی', 'سفید', 'رنگ سفارشی']];
-  const GLASS_KEY = [['n', 'b', 'd', null], ['s'], [null, null, null, null, null], ['k', 'pw', null]];
+  /* رنگ‌بندی ثابت برای همه‌ی انواع شیشه؛ با تغییر نوع شیشه لیست عوض نمی‌شود،
+     فقط رنگ‌هایی که برای آن نوع وجود ندارند غیرفعال می‌شوند. رنگ‌های شیشه‌ی
+     شفاف با عنوان تینت می‌آیند. */
+  const COLORS = ['سفید', 'تینت برنز', 'تینت دودی', 'تینت مشکی', 'تینت طلایی', 'تینت رز گلد', 'مشکی', 'رنگ سفارشی'];
+  const COLOR_OK = [
+    ['سفید', 'تینت برنز', 'تینت دودی', 'تینت مشکی'],
+    ['سفید'],
+    ['سفید', 'تینت برنز', 'تینت طلایی', 'تینت مشکی', 'تینت رز گلد'],
+    ['مشکی', 'سفید', 'رنگ سفارشی'],
+  ];
+  /* کلید قیمت هر رنگ برای هر نوع؛ نبود کلید یعنی قیمت پس از استعلام (آینه ۴ و ۶ میل هم استعلامی است) */
+  const GLASS_BY_TYPE = [
+    { 'سفید': 'n', 'تینت برنز': 'b', 'تینت دودی': 'd' },
+    { 'سفید': 's' },
+    {},
+    { 'سفید': 'pw', 'مشکی': 'k' },
+  ];
   const CUT_SURCHARGE = .15; /* برش بر اساس الگو: ۱۵٪ افزایش قیمت شیشه */
   const RIAL_TO_TOMAN = 1e5; /* میلیون ریال → تومان */
   const fa = n => Math.round(n).toLocaleString('fa-IR');
@@ -400,7 +364,7 @@
   const typeBtns = $$('#ety button', est);
   let colorBtns = [];
   const ltBtns = $$('#lt button', est), llBtns = $$('#ll button', est), lfBtns = $$('#lf button', est);
-  const ticks = $$('#tk span', est);
+  const ticks = $$('#tk button', est);
 
   const normalizeDigits = s => s
     .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
@@ -417,15 +381,23 @@
   function renderColors() {
     const box = E('eco');
     box.innerHTML = '';
-    colorBtns = TYPE_COLORS[S.ty].map((name, i) => {
+    colorBtns = COLORS.map((name, i) => {
       const b = document.createElement('button');
+      b.type = 'button';
       b.textContent = name;
-      b.addEventListener('click', () => { S.co = i; calc(); });
+      b.addEventListener('click', () => { if (b.disabled) return; S.co = i; calc(); });
       box.append(b);
       return b;
     });
   }
-  typeBtns.forEach((b, i) => b.addEventListener('click', () => { S.ty = i; S.co = 0; renderColors(); calc(); }));
+  function refreshColors() {
+    /* فقط غیرفعال‌کردن؛ لیست رنگ عوض نمی‌شود. اگر رنگ انتخاب‌شده برای نوع جدید
+       معتبر نباشد، اولین رنگ معتبر انتخاب می‌شود. */
+    const ok = COLOR_OK[S.ty];
+    if (!ok.includes(COLORS[S.co])) S.co = COLORS.findIndex(c => ok.includes(c));
+    colorBtns.forEach((b, i) => { b.disabled = !ok.includes(COLORS[i]); });
+  }
+  typeBtns.forEach((b, i) => b.addEventListener('click', () => { S.ty = i; refreshColors(); calc(); }));
   ltBtns.forEach((b, i) => b.addEventListener('click', () => { S.lt = i; if (S.sv['لمینت']) S.th = 1 + i; calc(); }));
   llBtns.forEach((b, i) => b.addEventListener('click', () => { S.ll = i; calc(); }));
   lfBtns.forEach((b, i) => b.addEventListener('click', () => { S.lf = i; calc(); }));
@@ -452,6 +424,7 @@
     const add = (label, detail, value) => { rows.push([label, detail, value]); if (value) total += value; };
     let glassValue = null;
 
+    refreshColors();
     [[colorBtns, S.co], [typeBtns, S.ty], [ltBtns, S.lt], [llBtns, S.ll], [lfBtns, S.lf]].forEach(([btns, on]) => btns.forEach((b, i) => b.classList.toggle('on', i === on)));
     ticks.forEach((t, i) => { t.classList.toggle('on', i === th); t.classList.toggle('dis', laminated && i !== 1 && i !== 2); });
     E('eth').style.setProperty('--p', (th / 5 * 100) + '%');
@@ -459,11 +432,11 @@
       ? 'از سفارش ۴ میلی‌متر بیش از ۲۰۰×۱۰۰ سانتی‌متر معذوریم.' : '';
 
     if (area > 0) {
-      const key = GLASS_KEY[S.ty][S.co];
+      const key = GLASS_BY_TYPE[S.ty][COLORS[S.co]] || null;
       const price = idx >= 0 && key ? GLASS[key][idx] : null;
       const sheets = laminated ? (S.ll ? 3 : 2) : 1;
       glassValue = price ? area * price * RIAL_TO_TOMAN * sheets : null;
-      add('شیشه ' + TYPES[S.ty] + ' — ' + TYPE_COLORS[S.ty][S.co] + '، ' + fa(THICK[th]) + ' میلی‌متر',
+      add('شیشه ' + TYPES[S.ty] + ' — ' + COLORS[S.co] + '، ' + fa(THICK[th]) + ' میلی‌متر',
         fa(area) + ' متر مربع' + (sheets > 1 ? ' × ' + fa(sheets) + ' شیشه' : ''),
         glassValue);
       Object.keys(S.sv).filter(k => S.sv[k]).forEach(k => {
@@ -485,6 +458,8 @@
       });
     }
     E('pr').textContent = total ? fa(total) : '۰۰۰,۰۰۰,۰۰۰';
+    const bcB = $('.bc b', est);
+    if (bcB) { bcB.classList.remove('pop'); void bcB.offsetWidth; bcB.classList.add('pop'); }
     inv.innerHTML = area > 0
       ? rows.map(r => `<div class="ir"><span>${r[0]}<small>${r[1]}</small></span><b>${r[2] ? fa(r[2]) + ' تومان' : 'پس از استعلام'}</b></div>`).join('') +
         `<div class="ir tot"><span>جمع کل (تخمینی)</span><b>${fa(total)} تومان</b></div>`

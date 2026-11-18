@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#21262B">
 <title>جام‌کاران جهان‌دیده | نسخه‌ی لوکس و مینیمال</title>
+<link rel="icon" href="assets/logo-jk-square.png?v=1">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#21262B;--mid:#A9A9A9;--paper:#F1F1F1;--slate:#778899;--soft:rgba(119,136,153,.13);--line:rgba(33,38,43,.15);--line-d:rgba(241,241,241,.16);--ease:cubic-bezier(.22,1,.36,1);--pad:clamp(20px,5vw,72px)}
@@ -159,8 +160,18 @@ section{padding-block:clamp(88px,11vw,164px)}
 #eth::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--ink);border:3px solid var(--paper);margin-top:-8px;box-shadow:0 1px 6px rgba(0,0,0,.3)}
 #eth::-moz-range-track{height:4px;background:var(--line)}#eth::-moz-range-progress{height:4px;background:var(--slate)}#eth::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--ink);border:3px solid var(--paper)}
 .ticks{display:flex;justify-content:space-between;font-size:13px;margin-top:6px}
-.ticks span{cursor:pointer;color:#6b737b;transition:color .3s}
-.ticks span.on{color:var(--ink);font-weight:700}.ticks span.dis{opacity:.35}
+.ticks span,.ticks button{cursor:pointer;color:#6b737b;transition:color .3s;background:none;border:0;font:inherit;padding:0}
+.ticks span.on,.ticks button.on{color:var(--ink);font-weight:700}.ticks span.dis,.ticks button.dis{opacity:.35}
+@media(hover:hover) and (pointer:fine){.ticks button:hover{color:var(--ink)}}
+.seg button:disabled{opacity:.4;cursor:not-allowed}
+.sc .sl-en{font-size:12px;letter-spacing:3px;color:var(--slate);margin-bottom:8px}
+.about-rows{margin-top:26px;display:grid;gap:14px}
+.arow{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.arow b{font-size:15px;flex:none}
+.abox{border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-size:13px;background:rgba(255,255,255,.65);line-height:1.6}
+@keyframes pricePop{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:none}}
+.bc b.pop{display:inline-block;animation:pricePop .45s ease}
+@media (prefers-reduced-motion: reduce){.bc b.pop{animation:none}}
 .seg{display:flex;flex-wrap:wrap;border:1px solid var(--line);background:#fff}
 .seg button{flex:1 1 auto;min-height:48px;padding:0 16px;font-size:14px;font-weight:600;color:var(--ink);transition:background .25s,color .25s,transform .16s var(--ease)}
 .seg button+button{border-inline-start:1px solid var(--line)}
@@ -248,7 +259,7 @@ section{padding-block:clamp(88px,11vw,164px)}
 </head>
 <body>
 <header class="hd dark" id="hd"><div class="wrap">
-  <a href="#top" aria-label="جام‌کاران جهان‌دیده"><img class="logo" src="assets/img-76fe925819.png" alt="جام‌کاران جهان‌دیده"></a>
+  <a href="#top" aria-label="جام‌کاران جهان‌دیده"><img class="logo" src="assets/logo-jk.png" alt="جام‌کاران جهان‌دیده"></a>
   <nav><a href="#about">درباره ما</a><a href="#prod">محصولات</a><a href="#specs">مشخصات</a><a href="#svc">خدمات</a><a href="#est">تخمین قیمت</a><a href="#faq">سؤالات متداول</a></nav>
   <button class="burger" id="burger" aria-label="منو"><i></i><i></i><i></i></button>
 </div><i class="pbar" id="bar"></i></header>
@@ -270,7 +281,7 @@ section{padding-block:clamp(88px,11vw,164px)}
     <p class="lead">شیشه‌ای برای هر کاربرد، با دقتی که ماندگار است</p>
     <p>جام کاران در زمینه تولید و فرآوری انواع شیشه‌های ساختمانی، دکوراتیو و ایمنی فعالیت می‌کند. ما تلاش می‌کنیم با تکیه بر تجربه، تجهیزات تخصصی و دقت در فرآیند تولید، شیشه‌ای متناسب با نیاز پروژه ارائه دهیم.</p>
     <p>از شیشه‌های مورد استفاده در دکوراسیون و مبلمان تا شیشه‌های ایمنی و ساختمانی، خدمات ما با توجه به نوع کاربرد، ابعاد و جزئیات موردنیاز پروژه انجام می‌شود.</p>
-    <p>برای ما، کیفیت فقط در محصول نهایی خلاصه نمی‌شود؛ دقت در اندازه‌گیری، توجه به جزئیات و پاسخ‌گویی درست بخش مهمی از کاری است که انجام می‌دهیم.</p>
+    <p>برای ما، کیفیت فقط در محصول نهایی خلاصه نمی‌شود؛ دقت در اندازه‌گیری، توجه به جزئیات و پاسخ‌گویی درست بخش مهمی از کاری است که انجام می‌دهیم.</p><div class="about-rows"><div class="arow"><b>صنایع:</b><span class="abox">ساختمان و نما</span><span class="abox">مبلمان</span><span class="abox">دکوراسیون داخلی</span><span class="abox">لوازم خانگی</span><span class="abox">فروشگاه و ویترین</span></div><div class="arow"><b>زمینه‌های فعالیت:</b><span class="abox">شیشه سکوریت</span><span class="abox">شیشه لمینت</span><span class="abox">سندبلاست</span><span class="abox">آینه</span><span class="abox">چاپ و برش سفارشی</span></div></div>
   </div>
 </div></section>
 <section class="prods" id="prod"><div class="wrap">
@@ -298,14 +309,14 @@ section{padding-block:clamp(88px,11vw,164px)}
 <section id="svc"><div class="wrap">
   <div class="eyebrow rv">خدمات تخصصی</div>
   <h2 class="h2 rv" style="--d:80ms">فرآوری، مطابق طرح شما</h2>
-  <div class="sgrid"><article class="sc rv" style="--d:0ms"><div class="sph"><img src="assets/img-ae834eef21.jpg" alt="" loading="lazy"></div><h3>چاپ سفارشی روی شیشه</h3><p>با چاپ طرح، تصویر و نقش دلخواه روی شیشه، جلوه‌ای متفاوت و اختصاصی به فضاهای معماری و دکوراسیون ببخشید. چاپ سفارشی امکان اجرای ایده‌های متنوع و هماهنگی شیشه با سبک طراحی پروژه شما را فراهم می‌کند.</p></article><article class="sc rv" style="--d:100ms"><div class="sph"><img src="assets/img-793fd24ca8.jpg" alt="" loading="lazy"></div><h3>برش شیشه بر اساس الگو</h3><p>برای طرح‌هایی فراتر از ابعاد و فرم‌های استاندارد، برش شیشه بر اساس الگوی موردنظر شما انجام می‌شود. این قابلیت امکان اجرای فرم‌های خاص و جزئیات سفارشی را در پروژه‌های دکوراتیو و معماری فراهم می‌کند.</p></article><article class="sc rv" style="--d:200ms"><div class="sph"><img src="assets/img-576c1eeff9.jpg" alt="" loading="lazy"></div><h3>پرداخت دیاموند</h3><p>پرداخت لبه شیشه، علاوه بر ایجاد ظاهری تمیز و دقیق، متناسب با نوع کاربرد و طراحی پروژه انتخاب می‌شود.</p></article><article class="sc rv" style="--d:300ms"><div class="sph"><img src="assets/img-e6fdcb9295.jpg" alt="" loading="lazy"></div><h3>شیشه سندبلاست</h3><p>شیشه سندبلاست با ایجاد سطحی مات و نیمه‌شفاف، عبور نور را حفظ می‌کند و در عین حال دید مستقیم را محدود می‌سازد. این ویژگی آن را به گزینه‌ای کاربردی برای فضاهایی تبدیل می‌کند که به ترکیبی از نور و حریم خصوصی نیاز دارند.</p></article></div>
+  <div class="sgrid"><article class="sc rv" style="--d:0ms"><div class="sph"><img src="assets/img-ae834eef21.jpg" alt="" loading="lazy"></div><h3>چاپ سفارشی روی شیشه</h3><p>با چاپ طرح، تصویر و نقش دلخواه روی شیشه، جلوه‌ای متفاوت و اختصاصی به فضاهای معماری و دکوراسیون ببخشید. چاپ سفارشی امکان اجرای ایده‌های متنوع و هماهنگی شیشه با سبک طراحی پروژه شما را فراهم می‌کند.</p></article><article class="sc rv" style="--d:100ms"><div class="sph"><img src="assets/img-793fd24ca8.jpg" alt="" loading="lazy"></div><h3>برش شیشه بر اساس الگو</h3><p>برای طرح‌هایی فراتر از ابعاد و فرم‌های استاندارد، برش شیشه بر اساس الگوی موردنظر شما انجام می‌شود. این قابلیت امکان اجرای فرم‌های خاص و جزئیات سفارشی را در پروژه‌های دکوراتیو و معماری فراهم می‌کند.</p></article><article class="sc rv" style="--d:200ms"><div class="sph"><img src="assets/img-576c1eeff9.jpg" alt="" loading="lazy"></div><h3>پرداخت دیاموند</h3><p>پرداخت لبه شیشه، علاوه بر ایجاد ظاهری تمیز و دقیق، متناسب با نوع کاربرد و طراحی پروژه انتخاب می‌شود.</p></article><article class="sc rv" style="--d:300ms"><div class="sph"><img src="assets/img-e6fdcb9295.jpg" alt="" loading="lazy"></div><h3>شیشه سندبلاست</h3><div class="sl-en">FROSTED / ETCHED GLASS</div><p>شیشه سندبلاست با ایجاد سطحی مات و نیمه‌شفاف، عبور نور را حفظ می‌کند و در عین حال دید مستقیم را محدود می‌سازد. این ویژگی آن را به گزینه‌ای کاربردی برای فضاهایی تبدیل می‌کند که به ترکیبی از نور و حریم خصوصی نیاز دارند.</p></article></div>
 </div></section>
 <section class="est" id="est"><div class="wrap">
   <div class="eyebrow rv">تخمین قیمت</div>
   <h2 class="h2 rv" style="--d:80ms">برآورد هزینه‌ی شیشه‌ی پروژه‌ی شما</h2>
   <div class="ec rv" style="transition-delay: 0.18s;"><h2>تخمین قیمت</h2><h3 class="ttl">مشخصات</h3>
 <div class="row3"><label class="pill"><span>طول</span><input id="eh" type="text" min="0" inputmode="decimal" placeholder="cm" autocomplete="off"></label><label class="pill"><span>عرض</span><input id="ew" type="text" min="0" inputmode="decimal" placeholder="cm" autocomplete="off"></label><label class="pill"><span>تعداد</span><input id="eq" type="text" min="1" value="1" inputmode="numeric" autocomplete="off"></label></div><div class="warn" id="ewarn"></div>
-<h3>ضخامت</h3><div class="slw"><input id="eth" type="range" min="0" max="5" step="1" value="2" style="--p: 40%;"><div class="ticks" id="tk"><span data-i="0">۴ میلی‌متر</span><span data-i="1">۵ میلی‌متر</span><span data-i="2" class="on">۶ میلی‌متر</span><span data-i="3">۸ میلی‌متر</span><span data-i="4">۱۰ میلی‌متر</span><span data-i="5">۱۲ میلی‌متر</span></div></div>
+<h3>ضخامت</h3><div class="slw"><input id="eth" type="range" min="0" max="5" step="1" value="2" style="--p: 40%;"><div class="ticks" id="tk"><button type="button" data-i="0">۴ میلی‌متر</button><button type="button" data-i="1">۵ میلی‌متر</button><button type="button" data-i="2" class="on">۶ میلی‌متر</button><button type="button" data-i="3">۸ میلی‌متر</button><button type="button" data-i="4">۱۰ میلی‌متر</button><button type="button" data-i="5">۱۲ میلی‌متر</button></div></div>
 <h3>نوع شیشه</h3><div class="seg" id="ety"><button class="on">معمولی</button><button>سوپرکلیر</button><button>آینه</button><button>لاکوبل</button></div><h3>رنگ‌بندی</h3><div class="seg" id="eco"></div><p class="nt"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"></circle><path d="M12 7v6.2M12 16.6v.4"></path></svg><span>رنگ‌های لاکوبل غیر از سفید و مشکی فقط در سفارش‌های با تیراژ بالا پذیرفته می‌شوند و شیشه لاکوبل غیر شفاف است.</span></p><h3>خدمات جانبی</h3><small>اجرت این بخش جدا از قیمت شیشه اضافه می‌شود</small><div id="esv"><div class="sv3"><label><input type="checkbox" data-k="سکوریت"><span>سکوریت</span><small>اجرت بر اساس ضخامت و نوع شیشه</small></label></div><div class="sv3"><label><input type="checkbox" data-k="لمینت"><span>لمینت</span><small>قیمت بر اساس نوع طلق</small></label></div><div class="lopt" id="lo"><div class="seg" id="lt"><button class="on">۵ میلی‌متر</button><button>۶ میلی‌متر</button></div><div class="seg" id="ll"><button class="on">۲ لایه</button><button>۳ لایه</button></div><div class="seg" id="lf"><button class="on">طلق ۰/۳۸</button><button>طلق ۰/۵۰</button><button>طلق ۰/۷۶</button><button>طلق ۱/۵۲</button></div></div><div class="sv3"><label><input type="checkbox" data-k="سندبلاست"><span>سندبلاست</span><small>قیمت پس از استعلام</small></label></div><div class="sv3"><label><input type="checkbox" data-k="برش بر اساس الگو"><span>برش بر اساس الگو</span><small>۱۵٪ افزایش قیمت شیشه</small></label></div><div class="sv3"><label><input type="checkbox" data-k="دیاموند"><span>دیاموند</span><small>اجرت تراش بر اساس ضخامت، به ازای هر متر لبه</small></label></div><div class="sv3"><label><input type="checkbox" data-k="چاپ سفارشی"><span>چاپ سفارشی</span><small>قیمت پس از استعلام</small></label></div></div>
 <div class="bar"><div class="bl"><span class="lay"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M3 12l9 5 9-5"></path><path d="M3 16l9 5 9-5"></path></svg></span><div><b>تخمین پروژه شما</b><small>قیمت نهایی پس از بررسی مشخصات سفارش اعلام می‌شود</small></div></div><div class="bc"><small>قیمت حدودی</small><b><span id="pr">۰۰۰,۰۰۰,۰۰۰</span> تومان</b></div><div class="g"><button class="pr">استعلام و ثبت سفارش</button><button class="dt">مشاهده جزئیات</button></div></div><div class="inv"></div></div>
 </div></section>
@@ -317,7 +328,7 @@ section{padding-block:clamp(88px,11vw,164px)}
 <footer class="ft" id="contact"><div class="wrap">
   <p class="big rv">برای هر پروژه‌ای،<br>با ما <em>صحبت کنید</em></p>
   <div class="fcols">
-    <div><img class="lg" src="assets/img-76fe925819.png" alt=""><b>جام‌کاران جهان‌دیده</b><p>صنایع تولید شیشه سکوریت و آینه</p><div class="soc" id="soc"></div></div>
+    <div><img class="lg" src="assets/logo-jk.png" alt="جام‌کاران جهان‌دیده"><b>جام‌کاران جهان‌دیده</b><p>صنایع تولید شیشه سکوریت و آینه</p><div class="soc" id="soc"></div></div>
     <div><h4>تماس</h4><a class="tel" href="tel:+982155258738">۰۲۱-۵۵۲۵۸۷۳۸</a><a href="links.html" style="margin-top:10px">راه‌های ارتباطی ←</a></div>
     <div><h4>آدرس</h4><p>اتوبان آیت‌الله سعیدی، چهاردانگه، ورودی جدید شهرک صنعتی، خیابان ناصر، پ ۲۳</p><a href="https://maps.app.goo.gl/X47LVhaXhbwTCxJL6?g_st=ic" target="_blank" rel="noopener" style="margin-top:10px">مشاهده روی نقشه ←</a></div>
   </div>
@@ -410,14 +421,29 @@ $('.sp .ah').click();
 accordion('.fq',false);
   const THICK = [4, 5, 6, 8, 10, 12];
   const NA = null;
-  const GLASS = { n: [NA, 13, 16, 20, 22], s: [NA, NA, 17, NA, 24], b: [NA, NA, 19, NA, NA], d: [NA, NA, 22, NA, 35], k: [NA, 32, 34.6, 37.5, 40.8], pw: [NA, NA, 39, NA, 45] };
+  const GLASS = { n: [13, NA, 16, 20, 22], s: [NA, NA, 17, NA, 24], b: [NA, NA, 19, NA, NA], d: [NA, NA, 22, NA, 35], k: [34, NA, 37, 39.5, 43], pw: [NA, NA, 41, NA, 47] };
   const TEMPER_PLAIN = [3.2, 3.75, 4.4, 5.6, 7.1];
-  const TEMPER_PRINT = [19, 19.5, 20, 22.5, 25];
+  const TEMPER_PRINT = [21, 21.5, 22, 24.5, 27];
   const DIAMOND = [.5, .63, .7, .88, 1];
-  const FILM = [['۰/۳۸', 20], ['۰/۵۰', 22], ['۰/۷۶', 26], ['۱/۵۲', 38]];
+  const FILM = [['۰/۳۸', 35], ['۰/۵۰', null], ['۰/۷۶', 45], ['۱/۵۲', 65]];
   const TYPES = ['معمولی', 'سوپرکلیر', 'آینه', 'لاکوبل'];
-  const TYPE_COLORS = [['سفید', 'برنز', 'دودی', 'مشکی'], ['سفید'], ['سفید', 'تینت برنز', 'تینت طلایی', 'تینت مشکی', 'تینت رز گلد'], ['مشکی', 'سفید', 'رنگ سفارشی']];
-  const GLASS_KEY = [['n', 'b', 'd', null], ['s'], [null, null, null, null, null], ['k', 'pw', null]];
+  /* رنگ‌بندی ثابت برای همه‌ی انواع شیشه؛ با تغییر نوع شیشه لیست عوض نمی‌شود،
+     فقط رنگ‌هایی که برای آن نوع وجود ندارند غیرفعال می‌شوند. رنگ‌های شیشه‌ی
+     شفاف با عنوان تینت می‌آیند. */
+  const COLORS = ['سفید', 'تینت برنز', 'تینت دودی', 'تینت مشکی', 'تینت طلایی', 'تینت رز گلد', 'مشکی', 'رنگ سفارشی'];
+  const COLOR_OK = [
+    ['سفید', 'تینت برنز', 'تینت دودی', 'تینت مشکی'],
+    ['سفید'],
+    ['سفید', 'تینت برنز', 'تینت طلایی', 'تینت مشکی', 'تینت رز گلد'],
+    ['مشکی', 'سفید', 'رنگ سفارشی'],
+  ];
+  /* کلید قیمت هر رنگ برای هر نوع؛ نبود کلید یعنی قیمت پس از استعلام (آینه ۴ و ۶ میل هم استعلامی است) */
+  const GLASS_BY_TYPE = [
+    { 'سفید': 'n', 'تینت برنز': 'b', 'تینت دودی': 'd' },
+    { 'سفید': 's' },
+    {},
+    { 'سفید': 'pw', 'مشکی': 'k' },
+  ];
   const CUT_SURCHARGE = .15; /* برش بر اساس الگو: ۱۵٪ افزایش قیمت شیشه */
   const RIAL_TO_TOMAN = 1e5; /* میلیون ریال → تومان */
   const fa = n => Math.round(n).toLocaleString('fa-IR');
@@ -429,7 +455,7 @@ accordion('.fq',false);
   const typeBtns = $$('#ety button', est);
   let colorBtns = [];
   const ltBtns = $$('#lt button', est), llBtns = $$('#ll button', est), lfBtns = $$('#lf button', est);
-  const ticks = $$('#tk span', est);
+  const ticks = $$('#tk button', est);
 
   const normalizeDigits = s => s
     .replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
@@ -446,15 +472,23 @@ accordion('.fq',false);
   function renderColors() {
     const box = E('eco');
     box.innerHTML = '';
-    colorBtns = TYPE_COLORS[S.ty].map((name, i) => {
+    colorBtns = COLORS.map((name, i) => {
       const b = document.createElement('button');
+      b.type = 'button';
       b.textContent = name;
-      b.addEventListener('click', () => { S.co = i; calc(); });
+      b.addEventListener('click', () => { if (b.disabled) return; S.co = i; calc(); });
       box.append(b);
       return b;
     });
   }
-  typeBtns.forEach((b, i) => b.addEventListener('click', () => { S.ty = i; S.co = 0; renderColors(); calc(); }));
+  function refreshColors() {
+    /* فقط غیرفعال‌کردن؛ لیست رنگ عوض نمی‌شود. اگر رنگ انتخاب‌شده برای نوع جدید
+       معتبر نباشد، اولین رنگ معتبر انتخاب می‌شود. */
+    const ok = COLOR_OK[S.ty];
+    if (!ok.includes(COLORS[S.co])) S.co = COLORS.findIndex(c => ok.includes(c));
+    colorBtns.forEach((b, i) => { b.disabled = !ok.includes(COLORS[i]); });
+  }
+  typeBtns.forEach((b, i) => b.addEventListener('click', () => { S.ty = i; refreshColors(); calc(); }));
   ltBtns.forEach((b, i) => b.addEventListener('click', () => { S.lt = i; if (S.sv['لمینت']) S.th = 1 + i; calc(); }));
   llBtns.forEach((b, i) => b.addEventListener('click', () => { S.ll = i; calc(); }));
   lfBtns.forEach((b, i) => b.addEventListener('click', () => { S.lf = i; calc(); }));
@@ -481,6 +515,7 @@ accordion('.fq',false);
     const add = (label, detail, value) => { rows.push([label, detail, value]); if (value) total += value; };
     let glassValue = null;
 
+    refreshColors();
     [[colorBtns, S.co], [typeBtns, S.ty], [ltBtns, S.lt], [llBtns, S.ll], [lfBtns, S.lf]].forEach(([btns, on]) => btns.forEach((b, i) => b.classList.toggle('on', i === on)));
     ticks.forEach((t, i) => { t.classList.toggle('on', i === th); t.classList.toggle('dis', laminated && i !== 1 && i !== 2); });
     E('eth').style.setProperty('--p', (th / 5 * 100) + '%');
@@ -488,11 +523,11 @@ accordion('.fq',false);
       ? 'از سفارش ۴ میلی‌متر بیش از ۲۰۰×۱۰۰ سانتی‌متر معذوریم.' : '';
 
     if (area > 0) {
-      const key = GLASS_KEY[S.ty][S.co];
+      const key = GLASS_BY_TYPE[S.ty][COLORS[S.co]] || null;
       const price = idx >= 0 && key ? GLASS[key][idx] : null;
       const sheets = laminated ? (S.ll ? 3 : 2) : 1;
       glassValue = price ? area * price * RIAL_TO_TOMAN * sheets : null;
-      add('شیشه ' + TYPES[S.ty] + ' — ' + TYPE_COLORS[S.ty][S.co] + '، ' + fa(THICK[th]) + ' میلی‌متر',
+      add('شیشه ' + TYPES[S.ty] + ' — ' + COLORS[S.co] + '، ' + fa(THICK[th]) + ' میلی‌متر',
         fa(area) + ' متر مربع' + (sheets > 1 ? ' × ' + fa(sheets) + ' شیشه' : ''),
         glassValue);
       Object.keys(S.sv).filter(k => S.sv[k]).forEach(k => {
@@ -514,6 +549,8 @@ accordion('.fq',false);
       });
     }
     E('pr').textContent = total ? fa(total) : '۰۰۰,۰۰۰,۰۰۰';
+    const bcB = $('.bc b', est);
+    if (bcB) { bcB.classList.remove('pop'); void bcB.offsetWidth; bcB.classList.add('pop'); }
     inv.innerHTML = area > 0
       ? rows.map(r => `<div class="ir"><span>${r[0]}<small>${r[1]}</small></span><b>${r[2] ? fa(r[2]) + ' تومان' : 'پس از استعلام'}</b></div>`).join('') +
         `<div class="ir tot"><span>جمع کل (تخمینی)</span><b>${fa(total)} تومان</b></div>`

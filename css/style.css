@@ -1976,99 +1976,127 @@ nav a {
 .spi {
   background: none !important;
 }
-.dip {
+/* دکمه‌ی دوتایی بادومی در هیرو: «بیشتر آشنا شوید» + «تخمین قیمت» — تم سرمه‌ای و آبی سایت */
+.cta2 {
   position: absolute;
   bottom: 0;
+  right: .5vw;
   z-index: 7;
+  display: flex;
+  align-items: stretch;
+}
+.cta2 a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 56px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
   text-decoration: none;
-  display: block;
+  white-space: nowrap;
+  transition: transform .3s cubic-bezier(.2,.7,.2,1), background .3s;
 }
-.dip .dsh {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  fill: #E0E7F1;
+.cta2 a svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
 }
-.dip .dc {
-  position: absolute;
-  left: 50%;
-  border-radius: 50%;
+.cta-main {
   background: #1F2C43;
   color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  padding: 0 28px;
   box-shadow: 0 10px 26px rgba(0, 0, 0, .28);
-  transition: transform .45s cubic-bezier(.2,.7,.2,1),background .4s;
 }
+.cta-est {
+  position: relative;
+  background: var(--blue);
+  color: #1F2C43;
+  border: 1.5px solid #1F2C43;
+  margin-inline-start: -14px;
+  padding: 0 22px;
+  padding-inline-start: 30px;
+}
+.cta-est .cic {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1F2C43;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+.cta-est .cic svg {
+  width: 19px;
+  height: 19px;
+}
+/* کمر بادوم: دو دایره هم‌رنگ پس‌زمینه‌ی هیرو که بالا و پایین محل اتصال دو دکمه را می‌بُرند */
+.cta-est:before,
+.cta-est:after {
+  content: "";
+  position: absolute;
+  right: -14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--navy);
+}
+.cta-est:before { top: -14px; }
+.cta-est:after { bottom: -14px; }
 @media (hover: hover) and (pointer: fine) {
-  .dip:hover .dc {
-    transform: translateY(-4px) scale(1.04);
+  .cta-main:hover {
+    transform: translateY(-3px);
     background: #2a3b5c;
   }
+  .cta-est:hover { transform: translateY(-3px); }
 }
-.dip .dc b {
-  font-weight: 700;
-  line-height: 1.5;
-}
-.dip .dc i {
-  display: block;
-  animation: bob 1.8s ease-in-out infinite;
-}
-.dip .dc svg {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  display: block;
-}
-@keyframes bob {0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(5px);opacity:1}}
 @media(max-width:800px) {
   .hero {
     padding-bottom: 96px !important;
   }
-  .dip {
+  .cta2 {
     right: 50%;
-    margin-right: -122px;
+    transform: translateX(50%);
   }
-}
-.ticks span.dis,
-.ticks button.dis {
-  opacity: .35;
-}
-.dip {
-  height: 11.64em;
-  font-size: clamp(8.5px,.7639vw,11px);
-  right: .5vw;
-}
-.dip .dsh {
-  shape-rendering: geometricPrecision;
-}
-.dip .dc {
-  top: 1.09em;
-  width: 9.82em;
-  height: 9.82em;
-  margin-left: -4.91em;
-  gap: .4em;
-}
-.dip .dc b {
-  font-size: 1.18em;
-  width: 7.4em;
-}
-.dip .dc svg {
-  width: 1.9em;
-  height: 1.6em;
-}
-@media(max-width:800px) {
-  .dip {
-    font-size: 11px;
-    right: 50%;
-    margin-right: -10em;
+  .cta2 a {
+    height: 52px;
+    font-size: 14px;
   }
+  .cta-main { padding: 0 20px; }
+  .cta-est { padding: 0 16px; padding-inline-start: 24px; }
+  .cta-est .cic { width: 30px; height: 30px; }
+}
+/* تب‌های مشاور و تخمین قیمت در یک کارت؛ دیفالت روی تخمین قیمت است */
+.esttabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+.esttab {
+  flex: 1;
+  min-height: 52px;
+  border-radius: 999px;
+  border: 1.5px solid #1F2C43;
+  background: rgba(255,255,255,.55);
+  color: #1F2C43;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .3s, color .3s, transform .16s;
+}
+.esttab:active { transform: scale(.97); }
+.esttab.on {
+  background: #1F2C43;
+  color: #fff;
+}
+.estpanel[hidden] { display: none; }
+.advflat {
+  background: none !important;
+  padding: 0 !important;
+  max-width: none;
+  border-radius: 0;
 }
 @media(max-width:800px) {
   .bar .g {
@@ -2108,14 +2136,6 @@ nav a {
 .card .cin .nm {
   color: var(--ink) !important;
   text-shadow: none !important;
-}
-.dip {
-  width: 26.36em;
-}
-@media(max-width:800px) {
-  .dip {
-    margin-right: -13.18em;
-  }
 }
 .cards {
   gap: 0 !important;
@@ -2401,43 +2421,6 @@ nav a {
   .card:nth-child(4) .cin {
     border-radius: 0 0 0 16px;
   }
-}
-.dip .dc {
-  background: radial-gradient(circle at 32% 24%, #34496d, #1F2C43 58%, #16233a);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, .38), inset 0 1px 0 rgba(255, 255, 255, .18), inset 0 -10px 20px rgba(0, 0, 0, .18);
-}
-.dip .dc:before {
-  content: "";
-  position: absolute;
-  inset: .55em;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, .22);
-}
-.dip .dc:after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  border: 1.5px solid rgba(139, 170, 173, .55);
-  animation: ring 2.6s ease-out infinite;
-}
-@keyframes ring {
-  0% { transform: scale(1); opacity: .7; }
-  100% { transform: scale(1.28); opacity: 0; }
-}
-.dip .dc i {
-  animation: none;
-}
-.dip .dc svg path {
-  transform-box: fill-box;
-  animation: chv 1.8s ease-in-out infinite;
-}
-.dip .dc svg path.c2 {
-  animation-delay: .25s;
-}
-@keyframes chv {
-  0%, 100% { opacity: .25; transform: translateY(-2px); }
-  50% { opacity: 1; transform: translateY(2px); }
 }
 .why {
   position: relative;
@@ -2804,7 +2787,6 @@ button,
 .seg button,
 .sv3,
 .sp,
-.dip,
 .card .more {
   -webkit-user-select: none;
   user-select: none;
@@ -2827,8 +2809,7 @@ button,
 .seg button:active,
 .bar .g button:active,
 .card .more:active,
-.mb:active,
-.dip:active .dc {
+.mb:active {
   transform: scale(.97);
 }
 .seg button,

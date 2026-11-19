@@ -467,6 +467,18 @@
   }
   renderColors();
   calc();
+  /* تب‌های مشاور / تخمین قیمت داخل یک کارت؛ دیفالت روی تخمین قیمت است */
+  const estTabs = $$('.esttab', est);
+  function setEstTab(name) {
+    estTabs.forEach(t => {
+      const on = t.dataset.tab === name;
+      t.classList.toggle('on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    $$('.estpanel', est).forEach(p => { p.hidden = p.id !== 'panel-' + name; });
+    if (name === 'est') calc();
+  }
+  estTabs.forEach(t => t.addEventListener('click', () => setEstTab(t.dataset.tab)));
 
   /* ---------- مشاور انتخاب شیشه (قانون‌مند، روی دستگاه؛ بدون سرور و بدون ارسال داده) ---------- */
   function recommendAdvisor(use, size, prio) {
@@ -491,7 +503,7 @@
     return { title: 'سکوریت ' + (th === 2 ? '۶' : th === 3 ? '۸' : '۱۰') + ' میل', plain: 'شیشه مقاوم و شفاف برای پنجره و نما.', reasons: ['ترکیب زیبایی و ایمنی', prio === 'cheap' ? 'ارزان‌تر از سوپرکلیر، با همان ایمنی' : 'مقاوم در برابر ضربه و تغییر دما'], warn: largeWarn, apply: { ty: 0, th: th, sv: ['سکوریت'] } };
   }
   window.__jamkaranAdvisor = recommendAdvisor;
-  const adv = $('#advisor');
+  const adv = $('#panel-advisor');
   if (adv) {
     const A = { use: null, size: null, prio: null };
     let lastRec = null;
@@ -518,6 +530,7 @@
       });
       E('eth').value = lastRec.apply.th; E('eth').dispatchEvent(new Event('input'));
       calc();
+      setEstTab('est');
       document.getElementById('est').scrollIntoView({ behavior: 'smooth' });
     });
     $('#advCopy', adv).addEventListener('click', async e => {

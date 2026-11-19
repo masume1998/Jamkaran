@@ -219,10 +219,12 @@
   addEventListener('load', clipHero);
   clipHero();
 
-  $('.dip').addEventListener('click', e => {
+  /* دکمه‌ی دوتایی هیرو: اسکرول نرم به «درباره ما» و «تخمین قیمت» */
+  $$('.cta2 a').forEach(a => a.addEventListener('click', e => {
     e.preventDefault();
-    $('#about').scrollIntoView({ behavior: 'smooth' });
-  });
+    const t = $(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  }));
 
   /* ---------- ظاهر شدن تدریجی بخش‌ها هنگام اسکرول ---------- */
   if ('IntersectionObserver' in window) {

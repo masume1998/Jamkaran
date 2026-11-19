@@ -1734,6 +1734,10 @@ nav a {
   color: #1F2C43;
   font-weight: 900;
 }
+.ticks span.dis,
+.ticks button.dis {
+  opacity: .35;
+}
 @media (hover: hover) and (pointer: fine) {
   .ticks button:hover {
     color: #1F2C43;
@@ -1976,23 +1980,22 @@ nav a {
 .spi {
   background: none !important;
 }
-/* دکمه‌ی دوتایی بادومی در هیرو: «بیشتر آشنا شوید» + «تخمین قیمت» — تم سرمه‌ای و آبی سایت */
+/* دکمه‌ی دوتایی بادومی در هیرو: «بیشتر آشنا شوید» + «تخمین قیمت» — تم سرمه‌ای و آبی سایت؛ داخل ستون متن، زیر پاراگراف */
 .cta2 {
-  position: absolute;
-  bottom: 0;
-  right: .5vw;
-  z-index: 7;
+  position: static;
   display: flex;
   align-items: stretch;
+  width: fit-content;
+  margin: 36px auto 0;
 }
 .cta2 a {
   display: flex;
   align-items: center;
   gap: 12px;
-  height: 56px;
+  height: 64px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
@@ -2006,7 +2009,7 @@ nav a {
 .cta-main {
   background: #1F2C43;
   color: #fff;
-  padding: 0 28px;
+  padding: 0 32px;
   box-shadow: 0 10px 26px rgba(0, 0, 0, .28);
 }
 .cta-est {
@@ -2014,13 +2017,13 @@ nav a {
   background: var(--blue);
   color: #1F2C43;
   border: 1.5px solid #1F2C43;
-  margin-inline-start: -14px;
-  padding: 0 22px;
-  padding-inline-start: 30px;
+  margin-inline-start: -16px;
+  padding: 0 26px;
+  padding-inline-start: 36px;
 }
 .cta-est .cic {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: #1F2C43;
   display: grid;
@@ -2028,22 +2031,22 @@ nav a {
   flex: none;
 }
 .cta-est .cic svg {
-  width: 19px;
-  height: 19px;
+  width: 21px;
+  height: 21px;
 }
 /* کمر بادوم: دو دایره هم‌رنگ پس‌زمینه‌ی هیرو که بالا و پایین محل اتصال دو دکمه را می‌بُرند */
 .cta-est:before,
 .cta-est:after {
   content: "";
   position: absolute;
-  right: -14px;
-  width: 28px;
-  height: 28px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--navy);
 }
-.cta-est:before { top: -14px; }
-.cta-est:after { bottom: -14px; }
+.cta-est:before { top: -20px; }
+.cta-est:after { bottom: -20px; }
 @media (hover: hover) and (pointer: fine) {
   .cta-main:hover {
     transform: translateY(-3px);
@@ -2053,19 +2056,26 @@ nav a {
 }
 @media(max-width:800px) {
   .hero {
-    padding-bottom: 96px !important;
+    padding-bottom: 48px !important;
   }
   .cta2 {
-    right: 50%;
-    transform: translateX(50%);
+    margin-top: 26px;
   }
   .cta2 a {
-    height: 52px;
-    font-size: 14px;
+    height: 56px;
+    font-size: 15px;
   }
-  .cta-main { padding: 0 20px; }
-  .cta-est { padding: 0 16px; padding-inline-start: 24px; }
-  .cta-est .cic { width: 30px; height: 30px; }
+  .cta-main { padding: 0 22px; }
+  .cta-est { padding: 0 18px; padding-inline-start: 28px; margin-inline-start: -14px; }
+  .cta-est .cic { width: 32px; height: 32px; }
+  .cta-est:before,
+  .cta-est:after {
+    right: -17px;
+    width: 34px;
+    height: 34px;
+  }
+  .cta-est:before { top: -17px; }
+  .cta-est:after { bottom: -17px; }
 }
 /* تب‌های مشاور و تخمین قیمت در یک کارت؛ دیفالت روی تخمین قیمت است */
 .esttabs {
